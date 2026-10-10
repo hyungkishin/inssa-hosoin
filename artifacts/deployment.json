@@ -1,0 +1,13 @@
+{
+  "productionUrl": "https://inssa-hoso-people.vercel.app",
+  "deploymentUrl": "https://inssa-hoso-people-70wj650yf-cashnamu.vercel.app",
+  "deploymentId": "dpl_6hmJW9czw459i3MfVNprDU6ih86s",
+  "readyState": "READY",
+  "target": "production",
+  "httpStatus": 200,
+  "e2e": {
+    "passed": 15,
+    "failed": 0
+  },
+  "verificationDate": "2026-10-10"
+}

@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.vercel/
+artifacts/
+docs/
+tests/
+scripts/
+playwright-report/
+test-results/
+playwright*.config.ts
+*.tsbuildinfo
+AGENTS.md
+README.md
+.env*

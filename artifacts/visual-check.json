@@ -1,0 +1,16 @@
+{
+  "url": "http://127.0.0.1:3000",
+  "httpStatus": 200,
+  "viewportWidths": [
+    1440,
+    390
+  ],
+  "runtimeErrors": [],
+  "failedResponses": [],
+  "screenshots": [
+    "desktop.png",
+    "mobile.png",
+    "briefing.png",
+    "practice.png"
+  ]
+}
