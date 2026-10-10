@@ -141,7 +141,7 @@
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:06.460Z",
+                  "startTime": "2026-10-10T04:53:58.651Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -170,12 +170,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 486,
+                  "duration": 413,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:06.460Z",
+                  "startTime": "2026-10-10T04:53:58.651Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -204,12 +204,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 598,
+                  "duration": 518,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:07.061Z",
+                  "startTime": "2026-10-10T04:53:59.150Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -238,12 +238,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 581,
+                  "duration": 483,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:07.115Z",
+                  "startTime": "2026-10-10T04:53:59.273Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -272,12 +272,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 253,
+                  "duration": 255,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:07.664Z",
+                  "startTime": "2026-10-10T04:53:59.672Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -287,7 +287,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-9de725ff220fb881e05c",
           "file": "app.spec.ts",
-          "line": 83,
+          "line": 87,
           "column": 1
         },
         {
@@ -306,12 +306,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 387,
+                  "duration": 322,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:07.704Z",
+                  "startTime": "2026-10-10T04:53:59.760Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -321,7 +321,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-fc7144ef30381d855029",
           "file": "app.spec.ts",
-          "line": 96,
+          "line": 100,
           "column": 1
         },
         {
@@ -340,12 +340,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 319,
+                  "duration": 228,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:07.922Z",
+                  "startTime": "2026-10-10T04:53:59.932Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -355,7 +355,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-c7bdcfc62d9623e69624",
           "file": "app.spec.ts",
-          "line": 106,
+          "line": 112,
           "column": 1
         },
         {
@@ -374,12 +374,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 351,
+                  "duration": 295,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:08.096Z",
+                  "startTime": "2026-10-10T04:54:00.086Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -389,7 +389,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-6bad27cd62606acc4c45",
           "file": "app.spec.ts",
-          "line": 129,
+          "line": 135,
           "column": 1
         },
         {
@@ -408,12 +408,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 1591,
+                  "duration": 1573,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:08.247Z",
+                  "startTime": "2026-10-10T04:54:00.164Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -423,7 +423,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-edb9cf8b39b2584c96a2",
           "file": "app.spec.ts",
-          "line": 145,
+          "line": 151,
           "column": 1
         },
         {
@@ -442,12 +442,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 328,
+                  "duration": 267,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:08.451Z",
+                  "startTime": "2026-10-10T04:54:00.385Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -457,7 +457,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-65a082659f3771e7e9cb",
           "file": "app.spec.ts",
-          "line": 182,
+          "line": 188,
           "column": 1
         },
         {
@@ -476,12 +476,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 277,
+                  "duration": 241,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:08.785Z",
+                  "startTime": "2026-10-10T04:54:00.656Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -491,7 +491,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-2bd452762d690075c57b",
           "file": "app.spec.ts",
-          "line": 194,
+          "line": 200,
           "column": 1
         },
         {
@@ -510,12 +510,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 468,
+                  "duration": 420,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:09.067Z",
+                  "startTime": "2026-10-10T04:54:00.901Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -525,7 +525,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-338d5997ee6ce6f5c02d",
           "file": "app.spec.ts",
-          "line": 211,
+          "line": 217,
           "column": 1
         },
         {
@@ -544,12 +544,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 368,
+                  "duration": 360,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:09.540Z",
+                  "startTime": "2026-10-10T04:54:01.324Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -559,7 +559,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-6597dbd39fb096a6bc87",
           "file": "app.spec.ts",
-          "line": 229,
+          "line": 235,
           "column": 1
         },
         {
@@ -575,15 +575,15 @@
               "projectName": "chromium",
               "results": [
                 {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 520,
+                  "duration": 491,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:09.842Z",
+                  "startTime": "2026-10-10T04:54:01.687Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -593,7 +593,7 @@
           ],
           "id": "c31ff144dc4fee3acd0a-40d8d0628d918373534f",
           "file": "app.spec.ts",
-          "line": 242,
+          "line": 248,
           "column": 1
         },
         {
@@ -609,15 +609,15 @@
               "projectName": "chromium",
               "results": [
                 {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
                   "status": "passed",
-                  "duration": 340,
+                  "duration": 305,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-10T04:12:09.912Z",
+                  "startTime": "2026-10-10T04:54:01.741Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -627,7 +627,177 @@
           ],
           "id": "c31ff144dc4fee3acd0a-f45b65d08c1f99b50c73",
           "file": "app.spec.ts",
-          "line": 259,
+          "line": 267,
+          "column": 1
+        },
+        {
+          "title": "밈 반응은 새로고침 뒤 유지되고 다른 반응으로 바꿀 수 있다",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 20000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 351,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T04:54:02.053Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-e9e670aab3b22e15f1f0",
+          "file": "app.spec.ts",
+          "line": 277,
+          "column": 1
+        },
+        {
+          "title": "결제 미연결 상태는 관심 표시로 안내하고 결제로 오인시키지 않는다",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 20000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 308,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T04:54:02.182Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-d9275a805f8e224a366b",
+          "file": "app.spec.ts",
+          "line": 305,
+          "column": 1
+        },
+        {
+          "title": "별명 검색으로 입문 내용을 찾고 대화 연습과 밈 퀴즈를 각각 사용한다",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 20000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 665,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T04:54:02.408Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-0af08ef828d5a416ab80",
+          "file": "app.spec.ts",
+          "line": 323,
+          "column": 1
+        },
+        {
+          "title": "퀴즈 결과를 복사해 친구에게 공유할 수 있다",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 20000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 505,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T04:54:02.493Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-2b893fc4db169073453e",
+          "file": "app.spec.ts",
+          "line": 360,
+          "column": 1
+        },
+        {
+          "title": "프리미엄 안내와 밈 퀴즈의 접근성을 점검한다",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 20000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 626,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-10T04:54:03.004Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c31ff144dc4fee3acd0a-35fe878adaa4d7896e8c",
+          "file": "app.spec.ts",
+          "line": 385,
           "column": 1
         }
       ]
@@ -635,9 +805,9 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-10T04:12:06.160Z",
-    "duration": 4237.209,
-    "expected": 15,
+    "startTime": "2026-10-10T04:53:58.376Z",
+    "duration": 5284.84,
+    "expected": 20,
     "skipped": 0,
     "unexpected": 0,
     "flaky": 0

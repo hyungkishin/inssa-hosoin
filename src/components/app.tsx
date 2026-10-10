@@ -28,10 +28,14 @@ import {
 import { Dialog } from "./dialog";
 import { Briefing } from "./briefing";
 import { Quiz } from "./quiz";
+import { Reaction } from "./reaction";
+import { Premium } from "./premium";
 const STORAGE_KEY = "inssa-progress-v1";
 type Modal =
   | { kind: "briefing"; items: Topic[]; sequence: boolean }
   | { kind: "quiz" }
+  | { kind: "knowledge" }
+  | { kind: "premium" }
   | null;
 export default function App() {
   const [view, setView] = useState<"all" | "saved">("all");
@@ -44,8 +48,8 @@ export default function App() {
   const [spotlight, setSpotlight] = useState(0);
   const [toast, setToast] = useState("");
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const briefing = briefingIds.map((id) =>
-    topics.find((topic) => topic.id === id)!,
+  const briefing = briefingIds.map(
+    (id) => topics.find((topic) => topic.id === id)!,
   );
   const readCount = briefing.filter((topic) =>
     progress.read.includes(topic.id),
@@ -103,16 +107,16 @@ export default function App() {
   const save = (id: string) =>
     persist(
       { ...progress, saved: toggleId(progress.saved, id) },
-      progress.saved.includes(id) ? "저장을 해제했어요" : "소재를 저장했어요",
+      progress.saved.includes(id) ? "저장을 해제했어요" : "밈을 저장했어요",
     );
   const markRead = (id: string) => {
     if (!progress.read.includes(id))
       persist({ ...progress, read: [...progress.read, id] });
   };
-  const copy = async (text: string) => {
+  const copy = async (text: string, success = "한마디를 복사했어요") => {
     try {
       await navigator.clipboard.writeText(text);
-      notify("한마디를 복사했어요");
+      notify(success);
     } catch {
       notify("복사할 수 없어요. 문장을 선택해 직접 복사해 주세요.");
     }
@@ -132,6 +136,7 @@ export default function App() {
     <div
       className={`toast ${toast ? "visible" : ""}`}
       role="status"
+      aria-label="알림"
       aria-live="polite"
     >
       {toast && (
@@ -164,7 +169,7 @@ export default function App() {
               aria-current={view === "all" ? "page" : undefined}
               onClick={() => changeView("all")}
             >
-              오늘의 브리핑
+              밈 도감
             </button>
             <button onClick={() => setModal({ kind: "quiz" })}>
               대화 연습
@@ -174,7 +179,7 @@ export default function App() {
               aria-current={view === "saved" ? "page" : undefined}
               onClick={() => changeView("saved")}
             >
-              저장한 소재{" "}
+              저장한 밈{" "}
               {progress.saved.length > 0 && (
                 <span className="nav-count">{progress.saved.length}</span>
               )}
@@ -182,7 +187,7 @@ export default function App() {
           </nav>
           <span className="header-note">
             <Clock size={16} />
-            대화에 필요한 만큼만
+            남들은 아는 그 밈, 나도 알기
           </span>
         </div>
       </header>
@@ -190,35 +195,35 @@ export default function App() {
         <div className="edition-line">
           <p>
             <span className="edition-label">
-              가볍게 읽고, 편하게 이야기하기
+              이름부터 맥락까지, 밈 입문 도감
             </span>
           </p>
           <span className="sample-label">
             <Info size={14} />
-            샘플 에디션
+            입문 에디션
           </span>
         </div>
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-copy">
             <span className="hero-label">
               <Clock size={16} />
-              모임 전, 딱 3분
+              치이카와부터, 딱 3분
             </span>
             <h1 id="hero-title">
-              요즘 이야기,
+              이 밈,
               <br />
-              가볍게 따라잡기.
+              나만 몰랐어?
             </h1>
             <p>
-              다 알 필요 없어요.
-              <br className="mobile-break" /> 말문이 트일 만큼만 챙겨가세요.
+              치이카와가 누구고, 이 짤은 왜 쓰는지.
+              <br className="mobile-break" /> 짧게 알아보고 대화에서도 써보세요.
             </p>
             <button
               className="button primary hero-cta"
               onClick={startBriefing}
               disabled={!ready}
             >
-              3분 브리핑 시작
+              치이카와 입문하기
               <ArrowRight size={20} />
             </button>
             <span className="hero-footnote">로그인 없이 바로 읽어요</span>
@@ -228,33 +233,33 @@ export default function App() {
             <div className="orbit orbit-two" />
             <div className="photo-print print-run">
               <Image
-                src="/images/run.jpg"
+                src="/images/chiikawa.png"
                 alt=""
                 fill
                 sizes="260px"
                 loading="eager"
                 priority
               />
-              <span>함께 달리는 재미</span>
+              <span>치이카와 · 둥근 귀</span>
             </div>
             <div className="photo-print print-matcha">
               <Image
-                src="/images/matcha.jpg"
+                src="/images/hachiware.png"
                 alt=""
                 fill
                 sizes="190px"
                 loading="eager"
                 priority
               />
-              <span>요즘의 한 잔</span>
+              <span>하치와레 · 파란 귀</span>
             </div>
             <div className="hero-bubble">
-              아, 그 얘기!
+              아, 이거였구나!
               <Sparkle size={28} weight="fill" />
             </div>
             <div className="small-bubble">
               <ChatsCircle size={20} />
-              대화 소재 +1
+              아는 밈 +1
             </div>
             <span className="art-spark spark-one">✳</span>
             <span className="art-spark spark-two">✦</span>
@@ -265,13 +270,13 @@ export default function App() {
             <span className="progress-icon">
               <BookOpen size={19} />
             </span>
-            <strong>이번 브리핑</strong>
+            <strong>치이카와 3분 입문</strong>
             <span className="progress-topics">
-              러닝크루<span>/</span>말차<span>/</span>디지털카메라
+              치이카와<span>/</span>하치와레<span>/</span>우사기
             </span>
           </div>
           <div className="progress-status">
-            <span>읽은 소재</span>
+            <span>읽은 카드</span>
             <strong data-testid="read-count">{readCount} / 3</strong>
             <div className="progress-dots" aria-hidden="true">
               {briefing.map((topic) => (
@@ -292,15 +297,15 @@ export default function App() {
             <div className="section-title">
               <div>
                 <h2 id="topics-heading">
-                  {view === "saved" ? "저장한 대화 소재" : "오늘의 대화 소재"}
+                  {view === "saved" ? "저장한 밈" : "밈·캐릭터 둘러보기"}
                   <span>
                     {view === "saved" ? progress.saved.length : topics.length}
                   </span>
                 </h2>
                 <p>
                   {view === "saved"
-                    ? "다시 꺼내보고 싶은 이야기를 모아뒀어요."
-                    : "새로운 이야기가 필요할 때, 하나만 골라보세요."}
+                    ? "다시 보고 싶은 밈을 모아뒀어요."
+                    : "이름을 몰라도, 별명으로 검색해 보세요."}
                 </p>
               </div>
             </div>
@@ -328,15 +333,15 @@ export default function App() {
                   onChange={(event) => setUnreadOnly(event.target.checked)}
                 />
                 <span className="toggle-track" aria-hidden="true" />안 읽은
-                소재만
+                카드만
               </label>
             </div>
             <label className="search-field">
               <MagnifyingGlass size={19} />
-              <span className="sr-only">대화 소재 검색</span>
+              <span className="sr-only">밈·캐릭터 검색</span>
               <input
                 type="search"
-                placeholder="궁금한 소재를 검색해 보세요"
+                placeholder="치이카와, 먼작귀, 망곰…"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
               />
@@ -351,7 +356,7 @@ export default function App() {
               )}
             </label>
             <p className="sr-only" aria-live="polite">
-              소재 {filtered.length}개
+              카드 {filtered.length}개
             </p>
             {filtered.length > 0 ? (
               <div className="topic-grid">
@@ -416,7 +421,7 @@ export default function App() {
                           {read ? (
                             <>
                               <Check size={14} />
-                              읽은 소재
+                              읽은 카드
                             </>
                           ) : (
                             <>
@@ -438,6 +443,7 @@ export default function App() {
                           />
                         </button>
                       </div>
+                      <Reaction id={topic.id} />
                     </article>
                   );
                 })}
@@ -447,12 +453,12 @@ export default function App() {
                 <BookmarkSimple size={36} weight="duotone" />
                 <h3>
                   {view === "saved" && progress.saved.length === 0
-                    ? "아직 저장한 소재가 없어요"
-                    : "조건에 맞는 소재가 없어요"}
+                    ? "아직 저장한 밈이 없어요"
+                    : "조건에 맞는 밈이 없어요"}
                 </h3>
                 <p>
                   {view === "saved" && progress.saved.length === 0
-                    ? "마음에 드는 소재의 저장 버튼을 눌러보세요."
+                    ? "마음에 드는 카드의 저장 버튼을 눌러보세요."
                     : "검색어나 분야를 바꿔서 다시 찾아보세요."}
                 </p>
                 <button
@@ -464,27 +470,28 @@ export default function App() {
                   }
                 >
                   {view === "saved" && progress.saved.length === 0
-                    ? "소재 둘러보기"
+                    ? "밈 둘러보기"
                     : "필터 초기화"}
                 </button>
               </div>
             )}
             <p className="content-note">
               <Info size={14} />
-              편집한 샘플 콘텐츠예요. 실시간 인기 순위와는 달라요.
+              공식 출처를 참고한 입문 콘텐츠예요. 실시간 인기 순위는 아니에요.
             </p>
           </section>
-          <aside className="sidebar" aria-label="대화에 활용하기">
+          <aside className="sidebar" aria-label="밈 활용하기">
             <section className="conversation-card">
               <span className="aside-icon">
                 <ChatsCircle size={23} weight="duotone" />
               </span>
               <h2>
-                말문이 막힐 땐,
-                <br />이 한마디.
+                알아봤다면,
+                <br />
+                이렇게 한마디.
               </h2>
               <p className="aside-description">
-                질문 하나로 가볍게 시작해 보세요.
+                설명에서 끝내지 말고, 말로도 써보세요.
               </p>
               <div className="conversation-example">
                 <span>{picked.category} 이야기</span>
@@ -527,6 +534,30 @@ export default function App() {
                 <ArrowRight size={17} />
               </button>
             </section>
+            <section className="knowledge-card">
+              <span className="section-kicker">PLUS 01 · 밈 퀴즈</span>
+              <h2>파란 귀, 이름이 뭐였지?</h2>
+              <p>방금 알게 된 이름과 뜻을 3문항으로 확인해요.</p>
+              <button
+                className="text-button"
+                onClick={() => setModal({ kind: "knowledge" })}
+              >
+                밈 퀴즈 풀기
+                <ArrowRight size={17} />
+              </button>
+            </section>
+            <section className="premium-card">
+              <span className="section-kicker">PLUS 02 · 출시 예정</span>
+              <h2>다음 밈도 궁금하다면</h2>
+              <p>주간 업데이트와 대화 연습팩을 준비하고 있어요.</p>
+              <button
+                className="text-button"
+                onClick={() => setModal({ kind: "premium" })}
+              >
+                프리미엄 구성 보기
+                <ArrowUpRight size={17} />
+              </button>
+            </section>
             <div className="sidebar-note">
               <Check size={17} />
               <p>
@@ -543,7 +574,7 @@ export default function App() {
           </span>
           <div>
             <h2>모든 유행을 알 필요는 없으니까.</h2>
-            <p>하나의 이야기로도, 충분히 대화를 시작할 수 있어요.</p>
+            <p>모르는 밈 하나부터, 가볍게 알아가면 돼요.</p>
           </div>
           <button
             className="text-button"
@@ -562,18 +593,34 @@ export default function App() {
       <footer className="site-footer">
         <div>
           <span className="footer-brand">인싸인척.</span>
-          <p>대화에 필요한 만큼만.</p>
+          <p>남들은 아는 그 밈, 나도 알기.</p>
         </div>
-        <span>샘플 콘텐츠 · 저장한 소재는 이 브라우저에만 보관돼요.</span>
+        <span>입문 콘텐츠 · 저장한 밈은 이 브라우저에만 보관돼요.</span>
       </footer>
       {!modal && notification}
       {modal && (
         <Dialog
-          label={modal.kind === "quiz" ? "대화 연습" : "대화 소재 브리핑"}
+          label={
+            modal.kind === "quiz"
+              ? "대화 연습"
+              : modal.kind === "knowledge"
+                ? "밈 퀴즈"
+                : modal.kind === "premium"
+                  ? "프리미엄 구성"
+                  : "밈·캐릭터 입문"
+          }
           onClose={() => setModal(null)}
         >
-          {modal.kind === "quiz" ? (
-            <Quiz onClose={() => setModal(null)} />
+          {modal.kind === "premium" ? (
+            <Premium />
+          ) : modal.kind === "quiz" || modal.kind === "knowledge" ? (
+            <Quiz
+              mode={modal.kind === "knowledge" ? "knowledge" : "practice"}
+              onClose={() => setModal(null)}
+              onShare={(text) =>
+                copy(text, "결과를 복사했어요. 친구에게 붙여넣어 보세요.")
+              }
+            />
           ) : (
             <Briefing
               items={modal.items}

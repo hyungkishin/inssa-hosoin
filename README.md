@@ -1,6 +1,6 @@
 # 인싸인척
 
-모임 전에 읽고 대화 소재를 챙기는 Next.js 16 MVP다. 관심사 설정 없이 요약을 읽고, 한마디를 복사하고, 짧은 상황으로 대화를 연습한다.
+밈·캐릭터 입문과 대화 연습을 연결한 Next.js 16 MVP다. 치이카와·망곰 등의 이름과 맥락을 읽고, 반응을 남기고, 퀴즈 결과를 공유한다.
 
 서비스: [Vercel 배포](https://inssa-hoso-people.vercel.app) · [GitHub 소스](https://github.com/hyungkishin/inssa-hosoin)
 
@@ -41,6 +41,9 @@ npm start
 - [Phase 3. QA](docs/03-qa.md)
 - [Phase 4. 페르소나 검증 리뷰](docs/04-persona-review.md)
 - [Phase 5. 배포](docs/05-deployment.md)
-- [사진과 폰트](docs/assets.md)
+- [Phase 6. 반응과 수익모델](docs/06-revenue.md)
+- [이미지와 폰트](docs/assets.md)
 
-콘텐츠는 편집한 샘플이다. 실시간 수집·AI 생성·계정 기능은 없다. 저장·읽음 상태는 현재 브라우저에만 보관한다. 사이트 데이터 삭제나 다른 기기 사용 시 복원되지 않는다.
+콘텐츠는 공식 출처를 참고한 입문 자료다. 실시간 수집·AI 생성·계정 기능은 없다. 저장·읽음·반응·프리미엄 관심 상태는 현재 브라우저에만 보관한다. 사이트 데이터 삭제나 다른 기기 사용 시 복원되지 않는다.
+
+프리미엄 가격은 가안이다. 결제·알림 신청·유료 콘텐츠는 제공하지 않는다.

@@ -1,27 +1,19 @@
 # Phase 2. 개발
 
-Next.js 16.4.0 App Router와 React 19.3.0으로 구현했다. 설치 버전은 `package-lock.json`에 고정했다.
+Next.js 16 App Router, React 19, TypeScript를 사용한다. 로그인 없이 정적 콘텐츠를 읽는다.
 
-| 기능       | 구현 위치                     | 동작                                     |
-| ---------- | ----------------------------- | ---------------------------------------- |
-| 탐색       | `src/components/app.tsx`      | 분야·검색·안 읽은 소재 필터              |
-| 브리핑     | `src/components/briefing.tsx` | 3개 소재 순차 읽기, 개별 읽기, 원문 링크 |
-| 저장함     | `src/lib/domain.ts`           | 저장·읽음 복원, 손상 데이터 정리         |
-| 대화 연습  | `src/components/quiz.tsx`     | 3문항, 답변 이유, 결과, 재시작           |
-| 다이얼로그 | `src/components/dialog.tsx`   | native dialog, Escape, 포커스 복원       |
-| 콘텐츠     | `src/lib/content.ts`          | 편집 샘플과 참고 자료                    |
+| 파일 | 역할 |
+| --- | --- |
+| `lib/content.ts` | 입문 6개, 대화 연습 3개, 밈 퀴즈 3개 |
+| `lib/domain.ts` | 검색·별명, 저장 복원, 점수 계산 |
+| `components/app.tsx` | 탐색·저장·입문·복사·모달 |
+| `components/briefing.tsx` | 구분법·출처·사용 맥락 |
+| `components/quiz.tsx` | 대화 연습·지식 퀴즈·결과 공유 |
+| `components/reaction.tsx` | 내 반응 저장·변경·취소 |
+| `components/premium.tsx` | 무료/유료 범위·가안 가격·관심 표시 |
 
-`localStorage`의 `inssa-progress-v1`에 주제 ID만 저장한다. 서버·계정·기기 간 동기화는 없다. 저장이 차단되면 현재 화면에서 상태를 유지하고 안내한다.
+`localStorage`에 저장·읽음·반응·프리미엄 관심을 보관한다. 서버로 보내지 않는다. 손상 데이터와 저장 차단을 처리한다. 기존 주제 ID는 복원 시 제거한다.
 
-사진과 폰트는 로컬에서 제공한다. 참고 자료는 외부 링크로 연다. API key와 유료 API는 사용하지 않는다.
+Native dialog로 키보드 포커스를 관리한다. 알림은 활성 dialog 안에 표시한다. 캐릭터 이미지는 로컬 파일이며 `object-fit: contain`을 사용한다.
 
-## 선택 근거
-
-- Client Component에서 UI 상태를 처리한다. 데이터가 작아 별도 전역 상태 라이브러리는 쓰지 않는다.
-- native dialog로 키보드 포커스를 제한한다. 디자인 확장성보다 기본 브라우저 동작을 우선했다.
-- 자동 콘텐츠 수집은 제외했다. 최신성 검증과 수집 권한은 다음 범위다.
-- ‘3분’과 ‘약 1분’은 기획상 읽기 시간 추정치다. 이용자 실측값은 아니다.
-
-## 자료
-
-Next.js 구성은 [공식 설치 문서](https://nextjs.org/docs/app/getting-started/installation)를 참고했다. 콘텐츠 출처와 연도는 각 소재 상세 화면에 표시한다. 사진 경로와 출처는 [assets.md](assets.md)에 기록했다.
+수익모델은 [별도 문서](06-revenue.md)에 기록한다. 결제·로그인·유료 권한·서버 집계는 아직 구현하지 않았다.

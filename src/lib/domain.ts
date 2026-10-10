@@ -3,6 +3,9 @@ export type Topic = {
   category: string;
   title: string;
   subtitle: string;
+  aliases?: string[];
+  recognition?: string;
+  usage?: string;
   summary: string;
   context: string;
   opener: string;
@@ -30,7 +33,13 @@ export function filterTopics(topics: Topic[], filter: Filter): Topic[] {
       (!filter.unreadOnly || !filter.readIds.includes(topic.id)) &&
       (!filter.savedOnly || filter.savedIds?.includes(topic.id)) &&
       (!query ||
-        [topic.title, topic.subtitle, topic.summary, topic.opener]
+        [
+          topic.title,
+          topic.subtitle,
+          topic.summary,
+          topic.opener,
+          ...(topic.aliases ?? []),
+        ]
           .join(" ")
           .toLocaleLowerCase("ko")
           .includes(query)),

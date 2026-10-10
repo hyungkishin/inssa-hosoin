@@ -26,3 +26,7 @@ npx vercel deploy --prod --yes --scope cashnamu
 ```
 
 `.vercelignore`로 테스트·문서·검증 산출물을 배포 입력에서 제외한다. `.env*`와 `.vercel/`은 Git에서도 제외한다.
+
+## 밈 에디션 갱신
+
+위 ID와 외부 E2E 15개는 초기 버전의 기록이다. 밈 에디션은 로컬 E2E 20개를 통과했다. 재배포 결과는 배포 완료 후 갱신한다.

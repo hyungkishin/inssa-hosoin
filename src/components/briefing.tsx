@@ -47,10 +47,10 @@ export function Briefing({
         <span className="completion-icon">
           <Confetti size={38} weight="duotone" />
         </span>
-        <p className="section-kicker">브리핑 완료</p>
-        <h2 tabIndex={-1}>대화 소재 3개를 챙겼어요</h2>
+        <p className="section-kicker">입문 완료</p>
+        <h2 tabIndex={-1}>세 캐릭터, 이제 구분돼요</h2>
         <p>
-          기억에 남는 이야기 하나면 충분해요.
+          둥근 귀 · 파란 귀 · 긴 귀를 기억해 보세요.
           <br />
           이번엔 가볍게 대화를 이어가 볼까요?
         </p>
@@ -67,7 +67,7 @@ export function Briefing({
           <ArrowRight size={18} />
         </button>
         <button className="text-button completion-close" onClick={onClose}>
-          소재 목록으로 돌아가기
+          도감으로 돌아가기
         </button>
       </div>
     );
@@ -80,7 +80,7 @@ export function Briefing({
     <div ref={root}>
       <article className="topic-detail">
         <div className="dialog-eyebrow">
-          {sequence ? "3분 브리핑" : topic.category}
+          {sequence ? "치이카와 3분 입문" : topic.category}
           {sequence && (
             <span>
               {step + 1} / {items.length}
@@ -111,8 +111,12 @@ export function Briefing({
           </div>
           <h2 tabIndex={-1}>{topic.title}</h2>
           <p className="detail-summary">{topic.summary}</p>
-          <h3>이 정도만 알아두세요</h3>
+          <h3>이렇게 구분해요</h3>
+          <p className="recognition-note">{topic.recognition}</p>
+          <h3>어디서 나왔어요?</h3>
           <p>{topic.context}</p>
+          <h3>어떤 맥락에서 써요?</h3>
+          <p>{topic.usage}</p>
           <div className="opener-box">
             <div>
               <span>이렇게 말해보세요</span>
@@ -125,7 +129,7 @@ export function Briefing({
               </button>
             </div>
             <blockquote>“{topic.opener}”</blockquote>
-            <p>이어 물어보기 · {topic.followUp}</p>
+            <p>함께 알아두기 · {topic.followUp}</p>
           </div>
           <p className="caution">{topic.caution}</p>
           <a
