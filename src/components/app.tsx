@@ -11,7 +11,6 @@ import {
   Clock,
   Copy,
   MagnifyingGlass,
-  Sparkle,
   X,
   ChatsCircle,
   BookOpen,
@@ -30,9 +29,17 @@ import { Briefing } from "./briefing";
 import { Quiz } from "./quiz";
 import { Reaction } from "./reaction";
 import { Premium } from "./premium";
+import { Conversation, ScenarioChoices, MemoList } from "./conversation";
+import {
+  MEMO_KEY,
+  parseMemos,
+  type ConversationMemo,
+  type MemoOutcome,
+} from "@/lib/conversations";
 const STORAGE_KEY = "inssa-progress-v1";
 type Modal =
   | { kind: "briefing"; items: Topic[]; sequence: boolean }
+  | { kind: "conversation"; id?: string; memo?: ConversationMemo }
   | { kind: "quiz" }
   | { kind: "knowledge" }
   | { kind: "premium" }
@@ -45,6 +52,7 @@ export default function App() {
   const [progress, setProgress] = useState<Progress>({ saved: [], read: [] });
   const [ready, setReady] = useState(false);
   const [modal, setModal] = useState<Modal>(null);
+  const [memos, setMemos] = useState<ConversationMemo[]>([]);
   const [spotlight, setSpotlight] = useState(0);
   const [toast, setToast] = useState("");
   const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -74,8 +82,15 @@ export default function App() {
     } catch {
       /* Storage can be unavailable in restricted browsers. */
     }
+    try {
+      setMemos(parseMemos(localStorage.getItem(MEMO_KEY)));
+    } catch {
+      /* Storage may be unavailable. */
+    }
     setReady(true);
     const sync = (event: StorageEvent) => {
+      if (event.key === MEMO_KEY || event.key === null)
+        setMemos(parseMemos(event.key === null ? null : event.newValue));
       if (event.key === STORAGE_KEY || event.key === null)
         setProgress(
           parseProgress(
@@ -121,6 +136,40 @@ export default function App() {
       notify("복사할 수 없어요. 문장을 선택해 직접 복사해 주세요.");
     }
   };
+  const persistMemos = (next: ConversationMemo[]) => {
+    try {
+      localStorage.setItem(MEMO_KEY, JSON.stringify(next));
+      setMemos(next);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+  const saveMemo = (memo: ConversationMemo) => {
+    const existing = memos.find((m) => m.scenarioId === memo.scenarioId);
+    const next =
+      existing &&
+      existing.opener === memo.opener &&
+      existing.followUp === memo.followUp
+        ? { ...memo, outcome: existing.outcome }
+        : memo;
+    return persistMemos([
+      next,
+      ...memos.filter((m) => m.scenarioId !== memo.scenarioId),
+    ]);
+  };
+  const changeOutcome = (id: string, outcome: MemoOutcome) => {
+    if (
+      persistMemos(
+        memos.map((m) => (m.scenarioId === id ? { ...m, outcome } : m)),
+      )
+    )
+      notify("내 사용 기록을 저장했어요. 다른 사람에게 공개되지 않아요.");
+    else
+      notify("기록을 저장할 수 없어요. 브라우저의 저장 설정을 확인해 주세요.");
+  };
+  const startConversation = (id?: string) =>
+    setModal({ kind: "conversation", id });
   const reset = () => {
     setCategory("전체");
     setQuery("");
@@ -171,9 +220,7 @@ export default function App() {
             >
               밈 도감
             </button>
-            <button onClick={() => setModal({ kind: "quiz" })}>
-              대화 연습
-            </button>
+            <button onClick={() => startConversation()}>대화 연습</button>
             <button
               className={view === "saved" ? "active" : ""}
               aria-current={view === "saved" ? "page" : undefined}
@@ -187,7 +234,7 @@ export default function App() {
           </nav>
           <span className="header-note">
             <Clock size={16} />
-            남들은 아는 그 밈, 나도 알기
+            취향은 달라도 대화는 이어지게
           </span>
         </div>
       </header>
@@ -195,7 +242,7 @@ export default function App() {
         <div className="edition-line">
           <p>
             <span className="edition-label">
-              이름부터 맥락까지, 밈 입문 도감
+              상대의 취향이 궁금할 때, 한마디부터
             </span>
           </p>
           <span className="sample-label">
@@ -207,70 +254,92 @@ export default function App() {
           <div className="hero-copy">
             <span className="hero-label">
               <Clock size={16} />
-              치이카와부터, 딱 3분
+              첫마디부터 후속질문까지
             </span>
             <h1 id="hero-title">
-              이 밈,
+              잘 몰라도,
               <br />
-              나만 몰랐어?
+              대화는 이어지게.
             </h1>
             <p>
-              치이카와가 누구고, 이 짤은 왜 쓰는지.
-              <br className="mobile-break" /> 짧게 알아보고 대화에서도 써보세요.
+              친구가 좋아하는 것, 나는 처음 들어도.
+              <br className="mobile-break" /> 물어보고 반응하는 말을 연습해
+              보세요.
             </p>
             <button
               className="button primary hero-cta"
-              onClick={startBriefing}
+              onClick={() => startConversation()}
               disabled={!ready}
             >
-              치이카와 입문하기
+              상황 고르고 연습하기
               <ArrowRight size={20} />
             </button>
-            <span className="hero-footnote">로그인 없이 바로 읽어요</span>
+            <span className="hero-footnote">로그인 없이 바로 연습해요</span>
           </div>
-          <div className="hero-art" aria-hidden="true">
-            <div className="orbit orbit-one" />
-            <div className="orbit orbit-two" />
-            <div className="photo-print print-run">
-              <Image
-                src="/images/chiikawa.png"
-                alt=""
-                fill
-                sizes="260px"
-                loading="eager"
-                priority
-              />
-              <span>치이카와 · 둥근 귀</span>
+          <div className="hero-chat" aria-label="대화 연습 미리보기">
+            <span className="preview-label">
+              <ChatsCircle size={18} /> 이런 상황, 있죠?
+            </span>
+            <div className="preview-message">
+              <span>친구</span>
+              <p>이거 봐. 드디어 구했어!</p>
             </div>
-            <div className="photo-print print-matcha">
-              <Image
-                src="/images/hachiware.png"
-                alt=""
-                fill
-                sizes="190px"
-                loading="eager"
-                priority
-              />
-              <span>하치와레 · 파란 귀</span>
+            <div className="preview-message mine">
+              <span>나</span>
+              <p>처음 보는데, 어떤 캐릭터야?</p>
             </div>
-            <div className="hero-bubble">
-              아, 이거였구나!
-              <Sparkle size={28} weight="fill" />
+            <div className="preview-message">
+              <span>친구</span>
+              <p>하치와레야. 겁이 나도 해보는 모습이 좋아.</p>
             </div>
-            <div className="small-bubble">
-              <ChatsCircle size={20} />
-              아는 밈 +1
+            <div className="preview-next">
+              <ArrowRight size={17} /> 이름 다음엔, 좋아하는 이유를 물어봐요.
             </div>
-            <span className="art-spark spark-one">✳</span>
-            <span className="art-spark spark-two">✦</span>
           </div>
         </section>
+        <section
+          className="scenario-section"
+          aria-labelledby="scenario-heading"
+        >
+          <div className="section-title">
+            <div>
+              <h2 id="scenario-heading">지금 어떤 상황인가요?</h2>
+              <p>선택에 따라 이어지는 예시 대화로 연습해요.</p>
+            </div>
+            <span className="scenario-duration">
+              <Clock size={15} /> 상황당 약 1분
+            </span>
+          </div>
+          <ScenarioChoices onChoose={startConversation} />
+        </section>
+        <MemoList
+          memos={memos}
+          ready={ready}
+          onOpen={(memo) =>
+            setModal({ kind: "conversation", id: memo.scenarioId, memo })
+          }
+          onOutcome={changeOutcome}
+          onDelete={(id) => {
+            if (persistMemos(memos.filter((m) => m.scenarioId !== id)))
+              notify("대화 메모를 삭제했어요.");
+            else
+              notify(
+                "메모를 삭제할 수 없어요. 브라우저의 저장 설정을 확인해 주세요.",
+              );
+          }}
+        />
         <div className="briefing-progress">
           <div className="progress-label">
             <span className="progress-icon">
               <BookOpen size={19} />
             </span>
-            <strong>치이카와 3분 입문</strong>
+            <button
+              className="text-button"
+              onClick={startBriefing}
+              disabled={!ready}
+            >
+              치이카와 입문하기 <ArrowRight size={16} />
+            </button>
             <span className="progress-topics">
               치이카와<span>/</span>하치와레<span>/</span>우사기
             </span>
@@ -522,13 +591,13 @@ export default function App() {
                 말하는 것으로.
               </h2>
               <p>
-                짧은 상황 3개로
+                상대가 한 말을 듣고
                 <br />
-                대화를 이어가는 연습을 해봐요.
+                다음 말을 직접 골라보세요.
               </p>
               <button
                 className="text-button"
-                onClick={() => setModal({ kind: "quiz" })}
+                onClick={() => startConversation()}
               >
                 1분 대화 연습
                 <ArrowRight size={17} />
@@ -548,8 +617,10 @@ export default function App() {
             </section>
             <section className="premium-card">
               <span className="section-kicker">PLUS 02 · 출시 예정</span>
-              <h2>다음 밈도 궁금하다면</h2>
-              <p>주간 업데이트와 대화 연습팩을 준비하고 있어요.</p>
+              <h2>상황별 연습팩을 검토 중이에요</h2>
+              <p>
+                먼저 무료 연습을 써보세요. 유료 제공 범위와 가격은 가안이에요.
+              </p>
               <button
                 className="text-button"
                 onClick={() => setModal({ kind: "premium" })}
@@ -574,7 +645,7 @@ export default function App() {
           </span>
           <div>
             <h2>모든 유행을 알 필요는 없으니까.</h2>
-            <p>모르는 밈 하나부터, 가볍게 알아가면 돼요.</p>
+            <p>모르면 물어보고, 좋아하는 이유부터 들어보세요.</p>
           </div>
           <button
             className="text-button"
@@ -593,7 +664,7 @@ export default function App() {
       <footer className="site-footer">
         <div>
           <span className="footer-brand">인싸인척.</span>
-          <p>남들은 아는 그 밈, 나도 알기.</p>
+          <p>취향은 달라도 대화는 이어지게.</p>
         </div>
         <span>입문 콘텐츠 · 저장한 밈은 이 브라우저에만 보관돼요.</span>
       </footer>
@@ -601,7 +672,7 @@ export default function App() {
       {modal && (
         <Dialog
           label={
-            modal.kind === "quiz"
+            modal.kind === "conversation" || modal.kind === "quiz"
               ? "대화 연습"
               : modal.kind === "knowledge"
                 ? "밈 퀴즈"
@@ -611,7 +682,23 @@ export default function App() {
           }
           onClose={() => setModal(null)}
         >
-          {modal.kind === "premium" ? (
+          {modal.kind === "conversation" ? (
+            <Conversation
+              initialId={modal.id}
+              memo={modal.memo}
+              onSave={saveMemo}
+              onBasic={() => setModal({ kind: "quiz" })}
+              onRead={(id) => {
+                const topic = topics.find((t) => t.id === id);
+                if (topic)
+                  setModal({
+                    kind: "briefing",
+                    items: [topic],
+                    sequence: false,
+                  });
+              }}
+            />
+          ) : modal.kind === "premium" ? (
             <Premium />
           ) : modal.kind === "quiz" || modal.kind === "knowledge" ? (
             <Quiz
@@ -631,7 +718,7 @@ export default function App() {
               onRead={markRead}
               onCopy={copy}
               onClose={() => setModal(null)}
-              onPractice={() => setModal({ kind: "quiz" })}
+              onPractice={() => startConversation()}
             />
           )}
           {notification}

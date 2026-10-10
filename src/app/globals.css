@@ -2362,3 +2362,568 @@ button {
 .premium-card {
   margin-bottom: 16px;
 }
+
+/* Situational practice uses the existing palette and spacing. */
+.hero-chat {
+  padding: 32px 40px 26px 12px;
+  align-self: center;
+}
+.preview-label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #41577d;
+  font-size: 12px;
+  font-weight: 650;
+  margin-bottom: 16px;
+}
+.preview-message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 12px 0;
+}
+.preview-message > span {
+  font-size: 11px;
+  color: #536583;
+  margin: 0 0 5px 4px;
+}
+.preview-message p {
+  background: #fff;
+  border-radius: 3px 14px 14px 14px;
+  padding: 12px 15px;
+  line-height: 1.65;
+  max-width: 88%;
+  font-size: 13px;
+}
+.preview-message.mine {
+  align-items: flex-end;
+}
+.preview-message.mine p {
+  background: var(--blue);
+  color: #fff;
+  border-radius: 14px 3px 14px 14px;
+}
+.preview-next {
+  margin-top: 18px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #405c91;
+  font-size: 12px;
+}
+.scenario-section {
+  margin: 34px 0 28px;
+}
+.scenario-section .section-title,
+.memo-section .section-title {
+  margin-bottom: 16px;
+}
+.scenario-duration {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.scenario-choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.scenario-choice {
+  display: flex;
+  text-align: left;
+  align-items: center;
+  gap: 13px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 22px 18px;
+  min-width: 0;
+}
+.scenario-choice:hover {
+  border-color: #91a7ee;
+  background: #f7f9ff;
+}
+.scenario-choice > span:nth-child(2) {
+  flex: 1;
+}
+.scenario-choice strong,
+.scenario-choice small {
+  display: block;
+}
+.scenario-choice strong {
+  font-size: 15px;
+  font-weight: 750;
+  margin-top: 5px;
+}
+.scenario-choice small {
+  font-size: 11px;
+  color: var(--muted);
+}
+.scenario-choice > svg {
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.scenario-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--pale-blue);
+  color: var(--blue);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.scenario-icon-1 {
+  background: #e4f3eb;
+  color: #287153;
+}
+.scenario-icon-2 {
+  background: #fff1de;
+  color: #8c5a14;
+}
+.memo-section {
+  margin: 30px 0 34px;
+}
+.memo-empty {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px dashed #cfd7e5;
+  border-radius: 12px;
+  color: var(--muted);
+}
+.memo-empty strong {
+  color: #3e4e68;
+  font-size: 13px;
+  font-weight: 650;
+}
+.memo-empty p {
+  font-size: 12px;
+  margin-top: 5px;
+  line-height: 1.6;
+}
+.memo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+.memo-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  padding: 22px;
+  min-width: 0;
+}
+.memo-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.memo-card h3 {
+  font-size: 15px;
+}
+.memo-card dl {
+  margin: 18px 0;
+}
+.memo-card dt {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.memo-card dd {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.memo-outcomes {
+  border: 0;
+  padding: 0;
+  margin: 0 0 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.memo-outcomes legend {
+  font-size: 12px;
+  margin-bottom: 10px;
+  font-weight: 650;
+}
+.memo-outcomes button {
+  border-radius: 7px;
+  background: #f4f6fa;
+  border: 1px solid #e5e8ef;
+  padding: 8px 9px;
+  min-height: 36px;
+  font-size: 11px;
+  color: #4b5d78;
+}
+.memo-outcomes button[aria-pressed="true"] {
+  background: var(--pale-blue);
+  border-color: #9db1ef;
+  color: #2344b7;
+}
+.conversation-flow {
+  padding: 42px 38px 30px;
+}
+.conversation-flow h2 {
+  font-size: 25px;
+  line-height: 1.45;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin: 12px 0 8px;
+}
+.conversation-flow h2:focus {
+  outline: none;
+}
+.flow-description {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.conversation-flow .scenario-choices {
+  grid-template-columns: 1fr;
+  margin-top: 26px;
+}
+.flow-bottom {
+  margin-top: 25px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.flow-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  padding-right: 16px;
+}
+.flow-top .text-button {
+  font-size: 11px;
+}
+.flow-steps {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 11px;
+  margin: 20px 0;
+}
+.flow-steps span {
+  background: #f0f3f8;
+  padding: 6px 9px;
+  border-radius: 5px;
+}
+.flow-steps span.current {
+  color: #2446b9;
+  background: var(--pale-blue);
+  font-weight: 750;
+}
+.flow-steps i {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.chat-transcript {
+  background: #f4f6fa;
+  border-radius: 13px;
+  padding: 18px;
+}
+.chat-line {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 0 14px;
+}
+.chat-line:last-child {
+  margin-bottom: 0;
+}
+.chat-line > span {
+  font-size: 10px;
+  color: #566780;
+  margin: 0 0 6px 3px;
+}
+.chat-line > p {
+  font-size: 13px;
+  line-height: 1.75;
+  border-radius: 3px 12px 12px 12px;
+  background: #fff;
+  padding: 10px 13px;
+  max-width: 92%;
+  overflow-wrap: anywhere;
+}
+.chat-line.mine {
+  align-items: flex-end;
+}
+.chat-line.mine > p {
+  color: #fff;
+  background: var(--blue);
+  border-radius: 12px 3px 12px 12px;
+}
+.flow-context {
+  margin: 16px 0;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 12px 14px;
+}
+.flow-context summary {
+  cursor: pointer;
+  color: #4a5c7c;
+  font-size: 12px;
+  min-height: 24px;
+  line-height: 1.8;
+}
+.flow-context p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 12px 0;
+}
+.flow-hint {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin: 18px 0 10px;
+}
+.flow-options {
+  display: grid;
+  gap: 9px;
+  margin: 18px 0;
+}
+.flow-options button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff;
+  text-align: left;
+  border: 1px solid #dce3ef;
+  padding: 15px;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.flow-options button > svg {
+  flex-shrink: 0;
+  color: var(--blue);
+}
+.flow-options button:hover {
+  background: var(--pale-blue);
+  border-color: #9eaff0;
+}
+.flow-feedback {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 15px;
+  border-radius: 9px;
+  margin: 18px 0;
+  background: var(--mint);
+  color: #286448;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.flow-feedback > svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.flow-next {
+  width: 100%;
+}
+.flow-retry {
+  margin: 17px auto 0;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+}
+.flow-disclaimer {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.8;
+  margin-top: 18px;
+}
+.memo-editor {
+  display: grid;
+  gap: 19px;
+  margin: 24px 0 18px;
+}
+.memo-editor label {
+  display: grid;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 650;
+}
+.memo-editor textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 85px;
+  max-height: 240px;
+  border: 1px solid #cbd5e5;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink);
+  padding: 12px;
+  background: #fff;
+}
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #2345cb;
+  outline-offset: 3px;
+}
+.memo-caution {
+  font-size: 12px;
+  color: #53647e;
+  line-height: 1.85;
+  border-left: 3px solid #cad7f4;
+  padding-left: 12px;
+  margin-bottom: 22px;
+}
+.memo-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.memo-actions > button {
+  flex: 1;
+  white-space: nowrap;
+}
+.memo-notice {
+  color: #294ea8;
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 14px;
+}
+@media (max-width: 1100px) {
+  .scenario-choice {
+    padding: 17px 13px;
+    gap: 9px;
+  }
+  .scenario-icon {
+    width: 37px;
+    height: 37px;
+  }
+  .scenario-choice strong {
+    font-size: 13px;
+  }
+  .hero-chat {
+    padding-right: 25px;
+  }
+}
+@media (max-width: 800px) {
+  .scenario-choices {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+  .scenario-choice {
+    padding: 15px 18px;
+  }
+  .scenario-choice strong {
+    font-size: 14px;
+  }
+  .memo-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-chat {
+    padding: 24px;
+  }
+  .hero-chat .preview-next {
+    line-height: 1.8;
+  }
+}
+@media (max-width: 640px) {
+  .hero-chat {
+    padding: 0 24px 24px;
+  }
+  .hero-chat .preview-label {
+    margin-bottom: 10px;
+  }
+  .hero-chat .preview-message {
+    margin: 10px 0;
+  }
+  .hero-chat .preview-message p {
+    font-size: 12px;
+    padding: 10px 13px;
+  }
+  .hero-chat .preview-next {
+    font-size: 11px;
+  }
+  .scenario-duration {
+    display: none;
+  }
+  .scenario-section {
+    margin: 27px 0;
+  }
+  .scenario-icon {
+    width: 42px;
+    height: 42px;
+  }
+  .memo-section .section-title p {
+    max-width: 245px;
+    line-height: 1.7;
+  }
+  .memo-empty {
+    padding: 17px;
+    align-items: flex-start;
+    gap: 11px;
+  }
+  .memo-empty > svg {
+    flex-shrink: 0;
+  }
+  .conversation-flow {
+    padding: 47px 20px 24px;
+  }
+  .conversation-flow h2 {
+    font-size: 22px;
+  }
+  .flow-top {
+    padding-right: 0;
+  }
+  .flow-steps {
+    gap: 5px;
+  }
+  .flow-steps span {
+    padding: 6px;
+  }
+  .chat-transcript {
+    padding: 13px;
+  }
+  .chat-line > p {
+    max-width: 96%;
+    font-size: 12px;
+  }
+  .flow-options button {
+    font-size: 12px;
+    padding: 13px;
+  }
+  .memo-actions {
+    flex-direction: column;
+  }
+  .memo-actions > button {
+    width: 100%;
+    min-height: 46px;
+  }
+}
+@media (max-width: 640px) {
+  .hero-copy .hero-footnote {
+    display: block;
+    margin: 9px 0 0;
+    font-size: 10px;
+  }
+  .hero-chat {
+    margin-top: 24px;
+  }
+}

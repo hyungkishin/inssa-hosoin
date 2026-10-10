@@ -64,6 +64,9 @@ test("퀴즈는 답변 이유와 결과를 보여주고 다시 시작할 수 있
 }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "대화 연습", exact: true }).click();
+  await page
+    .getByRole("button", { name: "기본 3문항 연습", exact: true })
+    .click();
   const dialog = page.getByRole("dialog");
   await dialog
     .getByRole("button", { name: "처음 보는데, 어떤 캐릭터야?" })
@@ -251,6 +254,9 @@ test("대화 연습의 질문과 답변 이유도 접근성 기준을 충족한�
   await page.goto("/");
   await page.getByRole("button", { name: "대화 연습", exact: true }).click();
   await page
+    .getByRole("button", { name: "기본 3문항 연습", exact: true })
+    .click();
+  await page
     .getByRole("button", { name: "처음 보는데, 어떤 캐릭터야?" })
     .click();
   const scan = await new AxeBuilder({ page })
@@ -352,6 +358,9 @@ test("별명 검색으로 입문 내용을 찾고 대화 연습과 밈 퀴즈를
   await expect(dialog.getByText("3 / 3", { exact: true })).toBeVisible();
   await page.keyboard.press("Escape");
   await page.getByRole("button", { name: "대화 연습", exact: true }).click();
+  await page
+    .getByRole("button", { name: "기본 3문항 연습", exact: true })
+    .click();
   await expect(
     page.getByRole("dialog").getByText(/친구가 치이카와 키링/),
   ).toBeVisible();

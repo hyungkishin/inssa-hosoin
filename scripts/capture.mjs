@@ -42,6 +42,9 @@ await ready();
 await page.screenshot({ path: "artifacts/briefing.png" });
 await page.keyboard.press("Escape");
 await page.getByRole("button", { name: "대화 연습", exact: true }).click();
+await page
+  .getByRole("button", { name: "기본 3문항 연습", exact: true })
+  .click();
 await page.getByRole("button", { name: "처음 보는데, 어떤 캐릭터야?" }).click();
 await page.screenshot({ path: "artifacts/practice.png" });
 await page.keyboard.press("Escape");
@@ -54,8 +57,43 @@ await ready();
 await page.screenshot({ path: "artifacts/premium.png" });
 await page.keyboard.press("Escape");
 await page.getByRole("button", { name: "밈 퀴즈 풀기" }).click();
-await page.getByRole("dialog").getByRole("button", { name: "하치와레", exact: false }).click();
+await page
+  .getByRole("dialog")
+  .getByRole("button", { name: "하치와레", exact: false })
+  .click();
 await page.screenshot({ path: "artifacts/meme-quiz.png" });
+await page.keyboard.press("Escape");
+await page
+  .getByRole("button", { name: "상황 고르고 연습하기", exact: true })
+  .click();
+await page.screenshot({ path: "artifacts/conversation-picker.png" });
+const conversation = page.getByRole("dialog");
+await conversation.getByRole("button", { name: /친구의 캐릭터 굿즈/ }).click();
+await conversation
+  .getByRole("button", { name: "처음 보는데, 어떤 캐릭터야?", exact: true })
+  .click();
+await page.screenshot({ path: "artifacts/conversation-branch.png" });
+await conversation
+  .getByRole("button", { name: "이어서 답하기", exact: true })
+  .click();
+await conversation
+  .getByRole("button", {
+    name: "그런 모습이 나오는 장면 하나 보여줄래?",
+    exact: true,
+  })
+  .click();
+await conversation
+  .getByRole("button", { name: "대화 메모 만들기", exact: true })
+  .click();
+await page.screenshot({ path: "artifacts/conversation-memo.png" });
+await conversation
+  .getByRole("button", { name: "대화 메모 저장", exact: true })
+  .click();
+await page.keyboard.press("Escape");
+await page
+  .getByRole("region", { name: "내 대화 메모", exact: true })
+  .scrollIntoViewIfNeeded();
+await page.screenshot({ path: "artifacts/conversation-saved.png" });
 assert.deepEqual(errors, []);
 assert.deepEqual(failedResponses, []);
 const result = {
@@ -64,7 +102,18 @@ const result = {
   viewportWidths: [1440, 390],
   runtimeErrors: errors,
   failedResponses,
-  screenshots: ["desktop.png", "mobile.png", "briefing.png", "practice.png", "premium.png", "meme-quiz.png"],
+  screenshots: [
+    "desktop.png",
+    "mobile.png",
+    "briefing.png",
+    "practice.png",
+    "premium.png",
+    "meme-quiz.png",
+    "conversation-picker.png",
+    "conversation-branch.png",
+    "conversation-memo.png",
+    "conversation-saved.png",
+  ],
 };
 await writeFile(
   "artifacts/visual-check.json",

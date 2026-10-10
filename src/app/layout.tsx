@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "@fontsource-variable/noto-sans-kr";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "인싸인척 | 밈·캐릭터, 아는 만큼 재밌게",
+  title: "인싸인척 | 잘 몰라도, 대화는 이어지게",
   description:
-    "치이카와부터 망곰까지. 밈·캐릭터의 이름과 맥락을 알아보고, 짧은 퀴즈와 대화 연습으로 써보세요.",
+    "친구가 좋아하는 캐릭터와 작품, 뜻을 모르는 짤. 상황별 대화를 연습하고 내 말투로 정리해 보세요.",
 };
 export default function RootLayout({
   children,
