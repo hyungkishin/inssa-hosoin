@@ -52,4 +52,12 @@
 
 ## 배포
 
-로컬 개선본의 배포 결과는 확인 뒤 기록한다. 스토어용 앱 패키징과 결제는 이번 구현 범위에 포함하지 않는다.
+[공개 서비스](https://inssa-hoso-people.vercel.app)에 Vercel production 배포를 완료했다. CLI `READY`, 공개 URL HTTP 200, 공개 서비스 E2E 28개 통과를 확인했다.
+
+소스 커밋 `b1b30cc`는 GitHub `main`에 push했다. [배포 정보](../artifacts/conversation-deployment.json)와 [공개 E2E 결과](../artifacts/conversation-deployment-e2e-results.json)를 보관한다.
+
+```sh
+DEPLOYMENT_URL=https://inssa-hoso-people.vercel.app npx playwright test --config playwright.remote.config.ts
+```
+
+스토어용 앱 패키징과 결제는 이번 구현 범위에 포함하지 않는다.

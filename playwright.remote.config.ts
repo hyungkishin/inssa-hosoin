@@ -12,7 +12,7 @@ export default defineConfig(local, {
   expect: { timeout: 10000 },
   reporter: [
     ["list"],
-    ["json", { outputFile: "artifacts/deployment-e2e-results.json" }],
+    ["json", { outputFile: "artifacts/conversation-deployment-e2e-results.json" }],
   ],
   use: { ...local.use, baseURL },
 });
