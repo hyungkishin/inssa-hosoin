@@ -1,13 +1,14 @@
 {
   "productionUrl": "https://inssa-hoso-people.vercel.app",
-  "deploymentUrl": "https://inssa-hoso-people-70wj650yf-cashnamu.vercel.app",
-  "deploymentId": "dpl_6hmJW9czw459i3MfVNprDU6ih86s",
+  "deploymentUrl": "https://inssa-hoso-people-gpxl1t0cu-cashnamu.vercel.app",
+  "deploymentId": "dpl_5qD4huPMZ4otFhzT3Td3KyRRSGbB",
   "readyState": "READY",
   "target": "production",
   "httpStatus": 200,
   "e2e": {
-    "passed": 15,
+    "passed": 20,
     "failed": 0
   },
-  "verificationDate": "2026-10-10"
+  "verificationDate": "2026-10-10",
+  "sourceCommit": "65279f2"
 }

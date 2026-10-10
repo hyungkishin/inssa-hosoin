@@ -49,6 +49,13 @@ await page.setViewportSize({ width: 390, height: 844 });
 await page.locator("h1").click();
 await ready();
 await page.screenshot({ path: "artifacts/mobile.png", fullPage: true });
+await page.getByRole("button", { name: "프리미엄 구성 보기" }).click();
+await ready();
+await page.screenshot({ path: "artifacts/premium.png" });
+await page.keyboard.press("Escape");
+await page.getByRole("button", { name: "밈 퀴즈 풀기" }).click();
+await page.getByRole("dialog").getByRole("button", { name: "하치와레", exact: false }).click();
+await page.screenshot({ path: "artifacts/meme-quiz.png" });
 assert.deepEqual(errors, []);
 assert.deepEqual(failedResponses, []);
 const result = {
@@ -57,7 +64,7 @@ const result = {
   viewportWidths: [1440, 390],
   runtimeErrors: errors,
   failedResponses,
-  screenshots: ["desktop.png", "mobile.png", "briefing.png", "practice.png"],
+  screenshots: ["desktop.png", "mobile.png", "briefing.png", "practice.png", "premium.png", "meme-quiz.png"],
 };
 await writeFile(
   "artifacts/visual-check.json",
